@@ -4,6 +4,7 @@ h1.innerText = 'Encontra el Auto de tus Sueños';  // cambiamos el texto interno
 let array = []; // hacemos una variable para el array
 
 // generamos 9 cards con propiedades por defecto
+function cards() {
 for (let i = 1; i <= 9; i++) {  // hacemos un for (que va del 1 al 9)
 
     let modelo = `Auto Modelo ${i}`;
@@ -34,11 +35,12 @@ for (let i = 1; i <= 9; i++) {  // hacemos un for (que va del 1 al 9)
                     <h4 class="card-title">${modelo}</h4>
                     <p class="card-text">Precio: ${precio}</p>
                     <p class="card-text">Año: ${año}</p>
-                    <a href="#" class="btn btn-primary">Mas detalles</a>
+                    <a href="#" class="btn btn-primary">Ver más</a>
                 </div>
             </div>
         </div>
     `);  // realizamos el metodo .push para insentar dentro de este todo el contenido de las cards 
+}
 }
 
 // seleccionamos el elemento section del documento y reemplaza su contenido con el HTML
