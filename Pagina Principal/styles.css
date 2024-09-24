@@ -1,0 +1,101 @@
+/* General */
+* {
+    font-family: "Raleway", system-ui;
+    font-weight: auto;
+}
+
+body {
+    background-color: #f8f9fa;
+    color: #333;
+}
+
+/* Nav */
+nav {
+    background-color: #000000;
+    height: 85px;
+}
+
+.nav-link {
+    color: white;
+    margin-left: 20px;
+}
+
+/* Header */
+header {
+    background-image: url('https://images.pexels.com/photos/919073/pexels-photo-919073.jpeg?cs=srgb&dl=pexels-albinberlin-919073.jpg&fm=jpg');
+    background-size: cover;
+    background-position: center;
+    display: flex;
+    align-items: center;
+    position: relative;
+    color: white;
+    height: 91.3vh;
+    width: 100%;
+}
+
+header::before {
+    content: '';
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 1;
+}
+
+header .container {
+    position: relative;
+    z-index: 2;
+}
+
+header h1 {
+    font-size: 4rem;
+    font-weight: 700;
+    margin-bottom: 10px;
+}
+
+header p {
+    font-size: 1.2rem;
+}
+
+/* Seccion Productos */
+section h2 {
+    font-size: 40px;
+    padding-bottom: 15px;
+}
+
+#cards {
+    display: flex;
+}
+
+.card {
+    background-color: #fff;
+    border-radius: 10px;
+    transition: transform 0.3s ease-in-out;
+}
+
+.card:hover {
+    transform: scale(1.02);
+}
+
+.card img {
+    height: 300px;
+    object-fit: cover;
+}
+
+/* Footer */
+.footer {
+    background-color: #000000;
+}
+
+.social-icons {
+    display: flex;
+    justify-content: center;
+    margin-top: 10px;
+    font-size: 17px;
+}
+
+hr {
+    border: 0;
+    height: 1px;
+    background-color: #ffffff;
+}
