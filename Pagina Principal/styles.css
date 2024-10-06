@@ -20,8 +20,12 @@ nav {
     margin-left: 20px;
 }
 
+.nav-link:hover {
+    color: white;
+}
+
 /* Header */
-header {
+#hero {
     background-image: url('https://images.pexels.com/photos/919073/pexels-photo-919073.jpeg?cs=srgb&dl=pexels-albinberlin-919073.jpg&fm=jpg');
     background-size: cover;
     background-position: center;
@@ -33,7 +37,7 @@ header {
     width: 100%;
 }
 
-header::before {
+#hero::before {
     content: '';
     position: absolute;
     height: 100%;
@@ -42,18 +46,18 @@ header::before {
     z-index: 1;
 }
 
-header .container {
+#hero .container {
     position: relative;
     z-index: 2;
 }
 
-header h1 {
+#hero h1 {
     font-size: 4rem;
     font-weight: 700;
     margin-bottom: 10px;
 }
 
-header p {
+#hero p {
     font-size: 1.2rem;
 }
 

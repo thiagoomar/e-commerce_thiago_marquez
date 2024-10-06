@@ -17,47 +17,39 @@
 </head>
 
 <body>
-    <!-- Navbar -->
-    <nav class="navbar navbar-expand-lg">
-        <div class="container-fluid">
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
-                data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
-                aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                    <li class="nav-item">
-                        <a class="nav-link" aria-current="page" href="#">Inicio</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">Sobre Nosotros</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">Servicios</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">Contacto</a>
-                    </li>
-                </ul>
-                <div class="mx-auto">
-                    <i class="bi bi-ev-front-fill" style="font-size: 3rem; color: rgb(255, 255, 255);"></i>
-                </div>
-                <form class="d-flex ms-auto" role="search">
-                    <input class="form-control me-2" type="search" placeholder="..." aria-label="Search">
-                    <button class="btn btn-outline-light" type="submit">Buscar</button>
-                </form>
-            </div>
-        </div>
-    </nav>
 
-    <!-- Header -->
-    <header class="text-white text-right">
+    <header>
+        <nav class="navbar navbar-expand-lg">
+            <div class="container-fluid">
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                    data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
+                    aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                    <ul id="generador" class="navbar-nav me-auto mb-2 mb-lg-0">
+                        <!-- se generan aca -->
+                    </ul>
+                    <div class="mx-auto">
+                        <i class="bi bi-ev-front-fill" style="font-size: 3rem; color: rgb(255, 255, 255);"></i>
+                    </div>
+                    <form class="d-flex ms-auto" role="search">
+                        <input class="form-control me-2" type="search" placeholder="Buscar..." aria-label="Search">
+                        <button class="btn btn-outline-light" type="submit">Buscar</button>
+                    </form>
+                </div>
+            </div>
+        </nav>
+    </header>
+    
+    
+
+    <section id="hero" class="text-white text-right">
         <div class="container">
             <h1></h1>
             <p>Explora nuestra selección de vehiculos nuevos y usados a precios increibles.</p>
         </div>
-    </header>
+    </section>
 
     <!-- Productos -->
     <section class="container pt-4">
@@ -71,7 +63,7 @@
     <footer class="footer">
         <div class="container-fluid">
             <div class="row p-5 text-white">
-                <div class="col-xs-12 col-lg-3 text-center">
+                <div class="col-12 col-lg-3 text-center">
                     <p class="h4 mb-2">Columna 1</p>
                     <div class="mb-2">
                         <a class="text-white text-decoration-none" href="#">Lorem Ipsum</a>
@@ -86,7 +78,7 @@
                         <a class="text-white text-decoration-none" href="#">Lorem Ipsum</a>
                     </div>
                 </div>
-                <div class="col-xs-12 col-lg-3 text-center">
+                <div class="col-12 col-lg-3 text-center">
                     <p class="h4">Columna 2</p>
                     <div class="mb-2">
                         <a class="text-white text-decoration-none" href="#">Lorem Ipsum</a>
@@ -101,7 +93,7 @@
                         <a class="text-white text-decoration-none" href="#">Lorem Ipsum</a>
                     </div>
                 </div>
-                <div class="col-xs-12 col-lg-3 text-center">
+                <div class="col-12 col-lg-3 text-center">
                     <p class="h4">Columna 3</p>
                     <div class="mb-2">
                         <a class="text-white text-decoration-none" href="#">Lorem Ipsum</a>
@@ -116,7 +108,7 @@
                         <a class="text-white text-decoration-none" href="#">Lorem Ipsum</a>
                     </div>
                 </div>
-                <div class="col-xs-12 col-lg-3 text-center">
+                <div class="col-12 col-lg-3 text-center">
                     <p class="h4">Columna 4</p>
                     <div class="mb-2">
                         <a class="text-white text-decoration-none" href="#">Lorem Ipsum</a>
@@ -152,8 +144,12 @@
             </div>
         </div>
     </footer>
+    
 
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
     <script src="main.js"></script>
+    <script src="../Navbar/navbar.js"></script>
+
 </body>
 
 </html>
