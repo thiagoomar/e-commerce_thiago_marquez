@@ -54,10 +54,24 @@
     <!-- Productos -->
     <section class="container pt-4">
         <h2 class="text-right">Nuestras Recomendaciones.</h2>
+        
+        <div class="input-group mb-3">
+            <input type="text" id="input" class="form-control" placeholder="Buscar...">
+            <button id="buscarBoton" class="btn btn-primary">Buscar</button>
+            <button id="limpiarBoton" class="btn btn-secondary">❌</button>
+        </div>
+    
+        <div class="btn-group mb-3" role="group">
+            <button onclick="filtrar('moderno')" class="btn btn-secondary">MODERNO</button>
+            <button onclick="filtrar('vintage')" class="btn btn-secondary">VINTAGE</button>
+            <button id="todosBoton" onclick="filtrar('todos')" class="btn btn-dark">TODOS</button>
+        </div>
+    
         <div class="row" id="cards">
             <!-- Aca van las cards -->
         </div>
     </section>
+    
 
     <!-- Footer -->
     <footer class="footer">
