@@ -17,13 +17,47 @@ nav {
     height: 85px;
 }
 
-.nav-link {
-    color: white;
-    margin-left: 20px;
+.navbar-nav .nav-item .nav-link {
+    color: #fff;
+    padding: 0.5rem 1rem;
+    transition: color 0.3s ease;
 }
 
+.navbar-nav .nav-item .nav-link:hover {
+    color: #ff6347;
+}
+
+.navbar-nav-logueo {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.navbar-nav-logueo li {
+    color: #fff;
+    cursor: pointer;
+    padding: 0.5rem 1rem;
+    transition: color 0.3s ease;
+    list-style: none;
+}
+
+.navbar-nav-logueo li:hover {
+    color: #ff6347;
+}
+
+.navbar-nav-logueo span {
+    color: #fff;
+    margin: 0 0.3rem;
+    font-weight: bold;
+}
+
+/* Card */
 .card img {
     object-fit: cover;
+}
+
+.notfound {
+    font-size: 80px;
 }
 
 /* Footer */
@@ -36,10 +70,4 @@ nav {
     justify-content: center;
     margin-top: 10px;
     font-size: 17px;
-}
-
-hr {
-    border: 0;
-    height: 1px;
-    background-color: #ffffff;
 }

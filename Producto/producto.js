@@ -148,20 +148,126 @@ let main = document.querySelector(".producto");
 
 // si el producto se encuentra, lo mostramos en la página. si no, mostramo el "auto no encontrado"
 if (auto) {
+  let cantidad = 1;
   main.innerHTML = `
-        <div class="col-md-4 col-sm-6 col-12 mb-4">
-            <div class="card shadow-sm">
-                <img src="${auto.car_image}" class="card-img-top" alt="Auto ${auto.car_make} ${auto.car_model}">
-                <div class="card-body">
-                    <h5 class="card-title">Auto: ${auto.car_make} ${auto.car_model}</h5>
-                    <p class="card-text">Precio del auto: $${auto.car_price}</p>
-                    <p class="card-text">Año: ${auto.car_model_year}</p>
-                    <p class="card-text">Stock: ${auto.car_stock}</p>
-                    <p class="card-text">Descripcion: ${auto.car_description}</p>
-                </div>
+      <div class="col-md-4 col-sm-6 col-12 mb-4">
+          <div class="card shadow-sm">
+              <img src="${auto.car_image}" class="card-img-top" alt="Auto ${
+    auto.car_make
+  } ${auto.car_model}">
+              <div class="card-body">
+                  <h5 class="card-title"><strong>Auto:</strong> ${auto.car_make} ${
+    auto.car_model
+  }</h5>
+                  <p class="card-text"><strong>Precio:</strong> $${
+                    auto.car_price
+                  }</p>
+                  <p class="card-text"><strong>Año:</strong> ${
+                    auto.car_model_year
+                  }</p>
+                  <p class="card-text"><strong>Stock:</strong> ${
+                    auto.car_stock
+                  }</p>
+                  <p class="card-text"><strong>Descripción:</strong> ${
+                    auto.car_description
+                  }</p>
+          </div>
+      </div>
+      <div class="compra mt-3">
+        ${
+          localStorage.getItem("usuarioEmail")
+            ? `
+            <div class="input-group mb-3">
+                <button onclick="restarCantidad()" class="btn btn-outline-secondary" type="button">-</button>
+                <input type="text" id="cantidad" class="form-control text-center" value="${cantidad}" aria-label="Cantidad" readonly>
+                <button onclick="sumarCantidad()" class="btn btn-outline-secondary" type="button">+</button>
             </div>
-        </div>
-    `;
+            <button onclick="añadirItems(${auto.id})" class="btn btn-primary">Comprar</button>
+            `
+            : `<button onclick="loguearse()" class="btn btn-success">Iniciar Sesión para Comprar</button>`
+        }
+      </div>
+  `;
+
+  function sumarCantidad() {
+    if (cantidad < auto.car_stock) {
+      cantidad++;
+      document.querySelector("#cantidad").value = cantidad;
+    }
+  }
+
+  function restarCantidad() {
+    if (cantidad > 1) {
+      cantidad--;
+      document.querySelector("#cantidad").value = cantidad;
+    }
+  }
 } else {
-  main.innerHTML = "<p>Auto no encontrado</p>";
+  main.innerHTML = `<p class="notfound">Auto no encontrado</p>`;
+}
+
+function loguearse() {
+  window.location.href = "../Login/login.html";
+}
+
+function añadirItems() {
+  function add() {
+    // se obtiene el carrito desde el localStorage y lo convierte de JSON a un array de objetos. se convierte el id a un numero
+    let cart = JSON.parse(localStorage.getItem("cart"));
+    const idProduct = Number(window.location.search.split("=")[1]);
+
+    // se busca el producto correspondiente en el array `data` usando el ID obtenido.
+    const product = data.find((auto) => auto.id === idProduct);
+
+    // se verifica si el producto ya existe en el carrito, es decir, si el ID del producto está en el carrito.
+    const existeElIdEnCart = cart.some((item) => item.product.id === idProduct);
+
+    // si el producto ya está en el carrito, usa `map` para actualizar la cantidad de ese producto.
+    if (existeElIdEnCart) {
+      cart = cart.map((item) => {
+        if (item.product.id === idProduct) {
+          // se aumenta la cantidad actual del producto en el carrito con el valor de cantidad. si no, lo retorna sin cambios.
+          return { ...item, quantity: item.quantity + Number(cantidad.value) };
+        } else {
+          return item;
+        }
+      });
+    } else {
+      // si el producto no está en el carrito, lo agrega como un nuevo objeto con su cantidad inicial.
+      cart.push({ product: product, quantity: Number(cantidad.value) });
+    }
+
+    // se guarda el carrito actualizado en el localStorage en formato JSON. calculamos el total de productos en el carrito sumando las cantidades de c.uno
+    localStorage.setItem("cart", JSON.stringify(cart));
+    let quantity = cart.reduce(
+      (acumulado, actual) => acumulado + actual.quantity,
+      0
+    );
+
+    // se guarda la cantidad total en el localStorage y se actualiza el contador de la cantidad total en la interfaz.
+    localStorage.setItem("quantity", quantity);
+    const quantityTag = document.querySelector("#quantity");
+    quantityTag.innerText = quantity;
+  }
+
+  Swal.fire({
+    text: "Estás segura/o de que estás segura/o de que querés agregar el producto al carrito?",
+    confirmButtonText: "Si",
+    cancelButtonText: "No te vas a llevar mi plata",
+    showCancelButton: true,
+    showCloseButton: true,
+    confirmButtonColor: "#06f",
+    cancelButtonColor: "#DB5079",
+  }).then((result) => {
+    if (result.isConfirmed) {
+      Toastify({
+        text: "Agregaste producto/s al carrito",
+        duration: 1500,
+        style: {
+          background: "linear-gradient(to right, #00b09b, #96c93d)",
+        },
+      }).showToast();
+      add();
+    }
+  });
 }
