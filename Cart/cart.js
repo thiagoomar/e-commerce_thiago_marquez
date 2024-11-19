@@ -21,7 +21,7 @@ function getCart(cards) {
                         <div class="col-md-4">
                             <div class="mt-3">
                                 <p class="text-muted mb-2">Precio</p>
-                                <h5 class="mb-0 mt-2">${card.product.car_price
+                                <h5 class="mb-0 mt-2">$${card.product.car_price
             }</h5>
                             </div>
                         </div>
@@ -34,7 +34,7 @@ function getCart(cards) {
                         <div class="col-md-3">
                             <div class="mt-3">
                                 <p class="text-muted mb-2">Total</p>
-                                <h5>${card.product.car_price * card.quantity
+                                <h5>$${card.product.car_price * card.quantity
             }</h5>
                             </div>
                         </div>
@@ -73,34 +73,11 @@ function total(cards) {
 total(JSON.parse(localStorage.getItem("cart")));
 
 function clearCart() {
-    function clear() {
         let quantityTag = document.querySelector("#quantity");
         quantityTag.innerText = "0";
         localStorage.setItem("cart", JSON.stringify([]));
         getCart([]);
         total(0);
-    }
-    Swal.fire({
-        text: "¿Estás segura/o de que querés vaciar el carrito?",
-        icon: "warning",
-        confirmButtonText: "Sí, borrar",
-        cancelButtonText: "No, cancelar",
-        showCancelButton: true,
-        showCloseButton: true,
-        confirmButtonColor: "#06f",
-        cancelButtonColor: "#DB5079",
-    }).then((result) => {
-        if (result.isConfirmed) {
-            Toastify({
-                text: "El carrito ha sido vaciado.",
-                duration: 2000,
-                style: {
-                    background: "linear-gradient(to right, #00b09b, #96c93d)",
-                },
-            }).showToast();
-            clear();
-        }
-    });
 }
 
 function removeItem(id) {
@@ -118,4 +95,34 @@ function removeItem(id) {
     localStorage.setItem("quantity", quantity);
     const quantityTag = document.querySelector("quantity");
     quantityTag.innerText = quantity;
+}
+
+
+function checkout() {
+    const recurso = {
+        user: localStorage.getItem("usuarioEmail"),
+        items: JSON.parse(localStorage.getItem("cart")),
+    }
+
+    fetch("https://6739259ba3a36b5a62ee0bb7.mockapi.io/orders", {
+        method: "POST",
+        body: JSON.stringify(recurso),
+    })
+
+    .then(response => response.json())
+    .then(data => {
+        Swal.fire({
+            text: `Gracias ${data.user}. Registramos tu orden con el numero #${data.id}`,
+            confirmButtonText: "Continuar",
+            confirmButtonColor: "#06f",
+        })
+        clearCart()
+    })
+    .catch(() =>
+        Swal.fire({
+            text: `Hubo un problema. Intentalo mas tarde.`,
+            confirmButtonText: "Continuar",
+            confirmButtonColor: "#06f",
+        })
+)
 }
